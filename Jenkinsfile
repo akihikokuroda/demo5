@@ -60,7 +60,7 @@ pipeline {
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
-
+            sh "jx create docker auth --host mycluster.icp:8500 --user admin --secret admin --email admin@admin.com"
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
           }
         }
